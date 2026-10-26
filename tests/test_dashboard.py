@@ -1,15 +1,21 @@
 import json
 import re
-import time
+from datetime import datetime, timedelta
 
 from lightfoot import dashboard
 from lightfoot.store import Launch
 
 
+def _noon(days_ago: int) -> float:
+    """Local noon `days_ago` calendar days back: a fixed 86,400 s step skips a day across a DST change."""
+    day = datetime.now().date() - timedelta(days=days_ago)
+    return datetime.combine(day, datetime.min.time()).replace(hour=12).timestamp()
+
+
 def _row(store, launch, mode="live", days_ago=0, saved=40_000):
     store.add_ledger(
         {
-            "ts": time.time() - days_ago * 86400,
+            "ts": _noon(days_ago),
             "launch_id": launch,
             "session_id": f"s-{launch}",
             "mode": mode,
