@@ -421,6 +421,8 @@ def shapes(requests: list[dict], protocol: str) -> dict:
                 continue  # Gemini's functions are named below
             name = t.get("name") or (t.get("function") or {}).get("name")
             tools.add(name or f"type:{t.get('type')}")  # built-in tools such as web_search have no name
+            if t.get("type") == "namespace":  # a group of tools (Codex's multi_agent_v1): watch each one
+                tools.update(f"{name}/{inner.get('name')}" for inner in t.get("tools") or [] if isinstance(inner, dict))
         if protocol == "gemini":
             tools.update(n for n in _tool_names(body) if n)
             for content in body.get("contents") or []:
