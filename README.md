@@ -19,7 +19,7 @@ Every turn of an agent session re-sends the whole conversation, and on long sess
 
 ## Install
 
-Paste this into your coding agent. It asks before installing anything optional, and shows each command before running it ([the instructions it follows](docs/agent-install.md)):
+Paste this into your coding agent. It asks before installing anything optional, and shows each command before running it ([the instructions it follows](https://github.com/miska-voutilainen/lightfoot/blob/main/docs/agent-install.md)):
 
 ```text
 Install Lightfoot for me: run `curl -fsSL https://raw.githubusercontent.com/miska-voutilainen/lightfoot/main/docs/agent-install.md`, then follow those instructions step by step.
@@ -95,7 +95,7 @@ Each rewrite happens once and is then replayed byte for byte on every later turn
 | Other tools | wired | Experimental, via `lightfoot run -- <command>` |
 | Cursor, Windsurf | - | Not possible: requests leave from their servers |
 
-The level says how much is proven for each agent, from least to most: `wired` (built from its source, unit-tested) > `0 · measure` (its real traffic parsed) > `1 · output rules` > `2 · history edits` > `3 · model summaries` > `certified` (a passing paired eval). Experimental agents stay in shadow mode unless started with `--live --experimental`. [Details per agent](docs/guide.md#supported-agents).
+The level says how much is proven for each agent, from least to most: `wired` (built from its source, unit-tested) > `0 · measure` (its real traffic parsed) > `1 · output rules` > `2 · history edits` > `3 · model summaries` > `certified` (a passing paired eval). Experimental agents stay in shadow mode unless started with `--live --experimental`. [Details per agent](https://github.com/miska-voutilainen/lightfoot/blob/main/docs/guide.md#supported-agents).
 
 ---
 
@@ -115,7 +115,7 @@ lightfoot plugins install --agent gemini   # Lightfoot's extension for Gemini CL
 lightfoot skills install                   # the same guidance as skills, e.g. for opencode
 ```
 
-Resume sessions through Lightfoot too (`lightfoot claude --resume`); resuming without it re-sends the history uncondensed and rewrites the cache once. Hook mode (no proxy, for Claude Code and opencode), the Claude Code plugin and status line, every setting, and troubleshooting: **[the user guide](docs/guide.md)**.
+Resume sessions through Lightfoot too (`lightfoot claude --resume`); resuming without it re-sends the history uncondensed and rewrites the cache once. Hook mode (no proxy, for Claude Code and opencode), the Claude Code plugin and status line, every setting, and troubleshooting: **[the user guide](https://github.com/miska-voutilainen/lightfoot/blob/main/docs/guide.md)**.
 
 ---
 
@@ -127,7 +127,7 @@ Resume sessions through Lightfoot too (`lightfoot claude --resume`); resuming wi
 - **Retention.** Stored content is deleted 30 days after a session's last use. The cost ledger holds only token counts.
 - **No telemetry**, no usage tracking, no analytics.
 
-It uses about 50 MB of memory and almost no CPU when idle; a turn of a long session costs it a few tens of milliseconds. Works with API keys and with Pro and Max subscriptions ([what that means](docs/guide.md#pro-and-max-subscriptions)).
+It uses about 50 MB of memory and almost no CPU when idle; a turn of a long session costs it a few tens of milliseconds. Works with API keys and with Pro and Max subscriptions ([what that means](https://github.com/miska-voutilainen/lightfoot/blob/main/docs/guide.md#pro-and-max-subscriptions)).
 
 ---
 
@@ -142,20 +142,20 @@ Both are optional, detected when present, and never installed unless you ask.
 
 ## Learn more
 
-- [User guide](docs/guide.md): every command and setting, agents, subscriptions, troubleshooting, uninstall
-- [Architecture](docs/architecture.md): exactly what Lightfoot does to a request, and why
-- [Comparison](docs/comparison.md): how it differs from other token-saving tools
-- [Development](docs/development.md): set up, test, measure, release
-- [Security](SECURITY.md): guarantees, and how to report a problem
+- [User guide](https://github.com/miska-voutilainen/lightfoot/blob/main/docs/guide.md): every command and setting, agents, subscriptions, troubleshooting, uninstall
+- [Architecture](https://github.com/miska-voutilainen/lightfoot/blob/main/docs/architecture.md): exactly what Lightfoot does to a request, and why
+- [Comparison](https://github.com/miska-voutilainen/lightfoot/blob/main/docs/comparison.md): how it differs from other token-saving tools
+- [Development](https://github.com/miska-voutilainen/lightfoot/blob/main/docs/development.md): set up, test, measure, release
+- [Security](https://github.com/miska-voutilainen/lightfoot/blob/main/SECURITY.md): guarantees, and how to report a problem
 
 ---
 
 ## Contributing
 
-Contributions are welcome. See **[CONTRIBUTING.md](CONTRIBUTING.md)** for the setup and the git workflow.
+Contributions are welcome. See **[CONTRIBUTING.md](https://github.com/miska-voutilainen/lightfoot/blob/main/CONTRIBUTING.md)** for the setup and the git workflow.
 
 ---
 
 ## License
 
-[MIT](LICENSE). Lightfoot is an independent project, not affiliated with or endorsed by Anthropic, OpenAI, Google, Graphify or Obsidian.
+[MIT](https://github.com/miska-voutilainen/lightfoot/blob/main/LICENSE). Lightfoot is an independent project, not affiliated with or endorsed by Anthropic, OpenAI, Google, Graphify or Obsidian.
