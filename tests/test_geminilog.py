@@ -3,11 +3,13 @@
 The records follow Gemini CLI's chatRecordingService.ts; the shapes match public session files.
 """
 
+import copy
 import json
 
 from conftest import big_output
 
 from lightfoot import geminilog
+from lightfoot.config import DEFAULTS
 
 TOKENS = {"input": 12000, "output": 40, "cached": 8000, "thoughts": 20, "tool": 0, "total": 12060}
 
@@ -110,7 +112,9 @@ def test_estimate_condenses_a_large_shell_output(tmp_path):
         gemini("g2", calls=[shell_call("c2", "1 passed", "pytest -q tests/test_mod.py")]),
         gemini("g3", "Fixed."),
     ]
-    totals = geminilog.estimate([write_jsonl(tmp_path / "s.jsonl", records)])
+    cfg = copy.deepcopy(DEFAULTS)
+    cfg["rewrite_budget_ms"] = 0  # a slow machine: offline, the budget must not apply
+    totals = geminilog.estimate([write_jsonl(tmp_path / "s.jsonl", records)], cfg)
     assert totals.calls == 3 and totals.models == {"gemini-2.5-pro"}
     assert totals.rules.get("spill") == 1
     assert 0 < totals.estimate < totals.baseline

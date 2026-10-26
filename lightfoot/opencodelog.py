@@ -176,6 +176,8 @@ def estimate(db: Path, since: float = 0.0, config: dict | None = None) -> Openco
     cfg = copy.deepcopy(config or DEFAULTS)
     cfg["prune"]["enabled"] = False  # the other agents' estimates measure the output rules only
     cfg["epochs"]["enabled"] = False
+    cfg["rewrite_budget_ms"] = 10_000  # offline: timing budgets are not the question here, as in estimate.py
+    cfg["epochs"]["budget_ms"] = 10_000
     totals = OpencodeTotals()
     if not db.is_file():
         return totals
