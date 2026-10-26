@@ -3,6 +3,7 @@
 The tables and JSON shapes match a real opencode 1.19.4 database.
 """
 
+import copy
 import json
 import sqlite3
 import time
@@ -10,6 +11,7 @@ import time
 from conftest import big_output
 
 from lightfoot import opencodelog
+from lightfoot.config import DEFAULTS
 
 TOKENS = {"total": 0, "input": 300, "output": 40, "reasoning": 10, "cache": {"write": 2000, "read": 9000}}
 
@@ -112,7 +114,9 @@ def test_estimate_condenses_a_large_shell_output(tmp_path):
             ),
         ],
     )
-    totals = opencodelog.estimate(db)
+    cfg = copy.deepcopy(DEFAULTS)
+    cfg["rewrite_budget_ms"] = 0  # a slow machine: offline, the budget must not apply
+    totals = opencodelog.estimate(db, config=cfg)
     assert (totals.sessions, totals.calls) == (1, 3)
     assert totals.rules.get("spill") == 1
     assert 0 < totals.estimate < totals.baseline

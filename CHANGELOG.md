@@ -60,6 +60,7 @@ First public release.
 
 ### Fixed
 
+- `lightfoot estimate --agent codex|gemini|opencode` applied the live proxy's per-request time budget, so on a slow machine it skipped rewrites and underestimated the saving. Like the Claude Code estimate, they now replay without it.
 - A prune dropped the system messages in the turns it replaced, which on Claude Code 2.1.310 includes the environment block (working directory, platform, git status). The summary now keeps them verbatim, each text once, newest last.
 - Codex CLI 0.164.0's subagent tools `wait_agent` and `resume_agent` (in its `multi_agent_v1` group) were unknown to its profile; they now count as subagent calls.
 - opencode 1.19.4 names its shell tool `bash`, its subagent tool `task`, and passes file paths as `filePath`. Its profile knew only the older names, so shell output was treated as generic output and reads and edits had no path (no stale-read stubs, no files in the prune summary). Both naming schemes are now recognised.

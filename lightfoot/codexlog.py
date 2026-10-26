@@ -18,6 +18,7 @@ Responses adapter and the Codex profile: the output rules only, as live Codex su
 
 from __future__ import annotations
 
+import copy
 import json
 import shutil
 import tempfile
@@ -122,7 +123,9 @@ def _counterfactual(c: dict, replay_saved: int, ingest_saved: int) -> dict:
 
 def estimate(files: list[Path], config: dict | None = None) -> CodexTotals:
     """Replay Codex rollouts through the planner with the output rules, in a throwaway store."""
-    cfg = config or DEFAULTS
+    cfg = copy.deepcopy(config or DEFAULTS)
+    cfg["rewrite_budget_ms"] = 10_000  # offline: timing budgets are not the question here, as in estimate.py
+    cfg["epochs"]["budget_ms"] = 10_000
     totals = CodexTotals(files=len(files))
     workdir = Path(tempfile.mkdtemp(prefix="lightfoot-codex-"))
     store = Store(workdir / "codex.db")

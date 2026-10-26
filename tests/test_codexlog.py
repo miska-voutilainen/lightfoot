@@ -1,10 +1,12 @@
 """`lightfoot estimate --agent codex`: Codex rollouts, in the format checked on a real one."""
 
+import copy
 import json
 
 from conftest import big_output
 
 from lightfoot import codexlog
+from lightfoot.config import DEFAULTS
 
 
 def line(kind, payload, ts="2026-10-25T10:00:00Z"):
@@ -50,7 +52,9 @@ def test_calls_are_rebuilt_from_the_rollout(tmp_path):
 
 
 def test_estimate_condenses_new_tool_output(tmp_path):
-    totals = codexlog.estimate([rollout(tmp_path)])
+    cfg = copy.deepcopy(DEFAULTS)
+    cfg["rewrite_budget_ms"] = 0  # a slow machine: offline, the budget must not apply
+    totals = codexlog.estimate([rollout(tmp_path)], cfg)
     assert totals.calls == 2 and totals.rules.get("spill") == 1
     assert 0 < totals.estimate < totals.baseline
     out = codexlog.render(totals)
