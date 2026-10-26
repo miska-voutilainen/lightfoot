@@ -148,7 +148,7 @@ This applies to Claude Code with a claude.ai login.
 - **What you get.** The same rules. They save limit headroom rather than money; the status line shows the saving as a share of your 5-hour limit.
 - **How it routes.** Anthropic documents [routing Claude Code through a gateway](https://code.claude.com/docs/en/llm-gateway) with `ANTHROPIC_BASE_URL`. Without a gateway credential your claude.ai login stays active, and Lightfoot forwards your headers unchanged.
 - **What Lightfoot never does.** Send a request of its own with your login. Model-written summaries (`prune.summarizer = "model"`) need an API key and fall back to the extractive summary otherwise.
-- **What isn't documented.** Whether a gateway may *rewrite* subscription requests, which live mode does. Shadow mode only measures; going live on a subscription is your call. Hook mode condenses tool output without a proxy.
+- **Live mode.** Supported on a subscription as with an API key: `lightfoot shadow off` condenses Claude Code's requests on your login. New launches start in shadow mode until you switch. Hook mode condenses tool output without a proxy.
 - **When it can't route.** Managed settings with `allowedProviders = ["customEndpoint"]` and a fixed `ANTHROPIC_BASE_URL` make Claude Code refuse your own proxy.
 
 ---
