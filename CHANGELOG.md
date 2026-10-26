@@ -2,7 +2,7 @@
 
 Notable changes to Lightfoot. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and versions follow [Semantic Versioning](https://semver.org/).
 
-## [1.0.0] - Unreleased
+## [1.0.0] - 2026-10-26
 
 First public release.
 
