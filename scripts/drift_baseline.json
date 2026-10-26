@@ -1,0 +1,34 @@
+{
+  "top_level": [
+    "context_management",
+    "max_tokens",
+    "messages",
+    "metadata",
+    "model",
+    "output_config",
+    "stream",
+    "system",
+    "thinking",
+    "tools"
+  ],
+  "blocks": [
+    "assistant:tool_use",
+    "system:text",
+    "user:text",
+    "user:tool_result"
+  ],
+  "tool_result_content": [],
+  "betas": [
+    "advanced-tool-use-2025-11-20",
+    "claude-code-20250219",
+    "context-management-2025-06-27",
+    "effort-2025-11-24",
+    "interleaved-thinking-2025-05-14",
+    "mid-conversation-tool-changes-2026-07-01",
+    "per-turn-control-2026-07-01",
+    "thinking-token-count-2026-05-13"
+  ],
+  "context_management": [
+    "{\"edits\": [{\"keep\": \"all\", \"type\": \"clear_thinking_20251015\"}]}"
+  ]
+}

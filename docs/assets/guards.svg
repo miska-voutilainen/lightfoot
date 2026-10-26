@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 790 150" width="790" height="150" role="img" aria-labelledby="title"><title id="title">Quality guards per session: normal, watch, keep more, stop</title>
+<style>
+  text { font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif; fill: #1f2328; }
+  .mono { font-family: ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,monospace; }
+  .muted { fill: #59636e; }
+  .accent { fill: #0969da; }
+  .box { fill: none; stroke: #59636e; }
+  .box-accent { fill: none; stroke: #0969da; }
+  .frame { fill: none; stroke: #8c959f; stroke-dasharray: 4 3; }
+  .line { stroke: #59636e; fill: none; }
+  .line-accent { stroke: #0969da; fill: none; }
+  .faint { stroke: #d0d7de; fill: none; }
+  .head { fill: #59636e; }
+  .head-accent { fill: #0969da; }
+  @media (prefers-color-scheme: dark) {
+    text { fill: #e6edf3; }
+    .muted { fill: #9198a1; }
+    .accent { fill: #4493f8; }
+    .box { stroke: #9198a1; }
+    .box-accent { stroke: #4493f8; }
+    .frame { stroke: #656c76; }
+    .line { stroke: #9198a1; }
+    .line-accent { stroke: #4493f8; }
+    .faint { stroke: #3d444d; }
+    .head { fill: #9198a1; }
+    .head-accent { fill: #4493f8; }
+  }
+</style>
+<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="head" d="M0,0 L10,5 L0,10 z"/></marker><marker id="aa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="head-accent" d="M0,0 L10,5 L0,10 z"/></marker></defs><rect class="box" x="10" y="40" width="120" height="40" rx="2" stroke-width="1"/><text x="70.0" y="64.5" font-size="13" font-weight="600" text-anchor="middle">normal</text><path class="line" d="M130,60 L223,60" stroke-width="1.25" marker-end="url(#a)"/><rect class="box" x="225" y="40" width="120" height="40" rx="2" stroke-width="1"/><text x="285.0" y="64.5" font-size="13" font-weight="600" text-anchor="middle">watch</text><path class="line" d="M345,60 L438,60" stroke-width="1.25" marker-end="url(#a)"/><rect class="box" x="440" y="40" width="120" height="40" rx="2" stroke-width="1"/><text x="500.0" y="64.5" font-size="13" font-weight="600" text-anchor="middle">keep more</text><text x="500" y="98" font-size="11" font-weight="400" text-anchor="middle" class="muted">next prune keeps twice the tokens</text><path class="line" d="M560,60 L653,60" stroke-width="1.25" marker-end="url(#a)"/><rect class="box" x="655" y="40" width="120" height="40" rx="2" stroke-width="1"/><text x="715.0" y="64.5" font-size="13" font-weight="600" text-anchor="middle">stop</text><text x="715" y="98" font-size="11" font-weight="400" text-anchor="middle" class="muted">no new prunes or epochs</text><text x="177" y="39" font-size="11" font-weight="400" text-anchor="middle" class="muted">pruning</text><text x="177" y="51" font-size="11" font-weight="400" text-anchor="middle" class="muted">signal</text><text x="392" y="39" font-size="11" font-weight="400" text-anchor="middle" class="muted">keep_more</text><text x="392" y="51" font-size="11" font-weight="400" text-anchor="middle" class="muted">signals</text><text x="607" y="39" font-size="11" font-weight="400" text-anchor="middle" class="muted">as many</text><text x="607" y="51" font-size="11" font-weight="400" text-anchor="middle" class="muted">again</text><path class="line" d="M285,80 L285,124 L70,124 L70,82" stroke-width="1.25" stroke-dasharray="4 3" marker-end="url(#a)"/><text x="178" y="140" font-size="11" font-weight="400" text-anchor="middle" class="muted">quiet_turns without a signal</text></svg>

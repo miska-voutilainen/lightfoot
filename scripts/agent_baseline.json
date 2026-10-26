@@ -1,0 +1,109 @@
+{
+  "aider": {
+    "tools": [],
+    "top_level": [
+      "messages",
+      "model",
+      "temperature"
+    ],
+    "units": [
+      "assistant:str",
+      "system:str",
+      "user:str"
+    ]
+  },
+  "codex": {
+    "tools": [
+      "create_goal",
+      "exec_command",
+      "get_goal",
+      "multi_agent_v1",
+      "request_user_input",
+      "type:web_search",
+      "update_goal",
+      "view_image",
+      "write_stdin"
+    ],
+    "top_level": [
+      "client_metadata",
+      "include",
+      "input",
+      "model",
+      "parallel_tool_calls",
+      "prompt_cache_key",
+      "reasoning",
+      "store",
+      "stream",
+      "tool_choice",
+      "tools"
+    ],
+    "units": [
+      "function_call",
+      "function_call_output",
+      "message:developer",
+      "message:user"
+    ]
+  },
+  "gemini": {
+    "tools": [
+      "activate_skill",
+      "enter_plan_mode",
+      "glob",
+      "google_web_search",
+      "grep_search",
+      "invoke_agent",
+      "list_background_processes",
+      "list_directory",
+      "read_background_output",
+      "read_file",
+      "replace",
+      "run_shell_command",
+      "update_topic",
+      "web_fetch",
+      "write_file",
+      "write_todos"
+    ],
+    "top_level": [
+      "contents",
+      "generationConfig",
+      "systemInstruction",
+      "tools"
+    ],
+    "units": [
+      "model:functionCall",
+      "model:thoughtSignature",
+      "user:functionResponse",
+      "user:text"
+    ]
+  },
+  "opencode": {
+    "tools": [
+      "bash",
+      "edit",
+      "glob",
+      "grep",
+      "read",
+      "skill",
+      "task",
+      "todowrite",
+      "webfetch",
+      "write"
+    ],
+    "top_level": [
+      "max_tokens",
+      "messages",
+      "model",
+      "output_config",
+      "stream",
+      "system",
+      "thinking",
+      "tool_choice",
+      "tools"
+    ],
+    "units": [
+      "assistant:tool_use",
+      "user:text",
+      "user:tool_result"
+    ]
+  }
+}

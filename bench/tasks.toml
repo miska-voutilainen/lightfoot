@@ -1,0 +1,71 @@
+# lightfoot public benchmark, version 1: long-horizon tasks on pinned open-source repositories.
+#
+#   lightfoot eval check bench/tasks.toml          free: setup works, every test fails before any change
+#   lightfoot eval run bench/tasks.toml --runs 5   paired runs, both arms; spends model usage
+#   lightfoot eval report                          pass rate, cost, turns and retrieval calls, 95% intervals
+#
+# The tasks are long on purpose: lightfoot's saving comes from sessions past 150k tokens.
+# Each check is mechanical and can't be met by editing the tests: the existing test suite
+# must pass and the test files must be unchanged from the pinned commit.
+
+agent = "claude"
+# The tasks only edit files inside a throwaway worktree, and they need to run mypy and pytest.
+permission_mode = "bypassPermissions"
+model = "claude-opus-5-5"
+runs = 5
+timeout_minutes = 90
+
+[[task]]
+id = "boltons-types"
+repo_url = "https://github.com/mahmoud/boltons"
+commit = "4e5faa3d7e4008d89e0d8bf1ea87b6d9a061a16d"
+setup = "python {task_dir}/benchenv.py setup pytest==9.1.1 mypy==2.4.0"
+prompt = """
+Add complete type annotations to boltons/iterutils.py and boltons/strutils.py so that
+`mypy --strict boltons/iterutils.py boltons/strutils.py` reports no errors. Keep the
+behaviour exactly as it is: the existing test suite in tests/ must keep passing. Do not
+change any file under tests/, and do not silence mypy with `# type: ignore`, `Any`
+everywhere, or configuration changes; write real types.
+
+A virtualenv with the project, pytest and mypy is in .bench-venv (run tools as
+`.bench-venv/bin/python -m mypy ...`, or `.bench-venv\\Scripts\\python -m mypy ...` on Windows).
+Work until both checks pass; there is no one to answer questions.
+"""
+test = """python {task_dir}/benchenv.py unchanged 4e5faa3d7e4008d89e0d8bf1ea87b6d9a061a16d tests && python {task_dir}/benchenv.py run mypy --strict --follow-imports=silent boltons/iterutils.py boltons/strutils.py && python {task_dir}/benchenv.py run pytest -q --basetemp=.bench-tmp tests"""
+
+[[task]]
+id = "toolz-types"
+repo_url = "https://github.com/pytoolz/toolz"
+commit = "451af60dec590a6010e2babdbf391ea8f815122f"
+setup = "python {task_dir}/benchenv.py setup pytest==9.1.1 mypy==2.4.0"
+prompt = """
+Add complete type annotations to toolz/itertoolz.py and toolz/dicttoolz.py so that
+`mypy --strict toolz/itertoolz.py toolz/dicttoolz.py` reports no errors. Keep the
+behaviour exactly as it is: the existing test suite must keep passing. Do not change any
+test file (toolz/tests/ and toolz/sandbox/tests/), and do not silence mypy with
+`# type: ignore`, `Any` everywhere, or configuration changes; write real types.
+
+A virtualenv with the project, pytest and mypy is in .bench-venv (run tools as
+`.bench-venv/bin/python -m mypy ...`, or `.bench-venv\\Scripts\\python -m mypy ...` on Windows).
+Work until both checks pass; there is no one to answer questions.
+"""
+test = """python {task_dir}/benchenv.py unchanged 451af60dec590a6010e2babdbf391ea8f815122f toolz/tests toolz/sandbox/tests && python {task_dir}/benchenv.py run mypy --strict --follow-imports=silent toolz/itertoolz.py toolz/dicttoolz.py && python {task_dir}/benchenv.py run pytest -q --basetemp=.bench-tmp"""
+
+[[task]]
+id = "toolz-split"
+repo_url = "https://github.com/pytoolz/toolz"
+commit = "451af60dec590a6010e2babdbf391ea8f815122f"
+setup = "python {task_dir}/benchenv.py setup pytest==9.1.1"
+prompt = """
+toolz/functoolz.py is too large. Turn it into a package, toolz/functoolz/, with the code
+split into at least four modules grouped by purpose (for example composition, currying,
+memoization, and the rest), and delete toolz/functoolz.py. Everything that can be imported
+from toolz.functoolz today must still be importable from toolz.functoolz, and from toolz,
+toolz.curried and tlz as before. The whole test suite must keep passing, and no test file
+(toolz/tests/ and toolz/sandbox/tests/) may change.
+
+A virtualenv with the project and pytest is in .bench-venv (run tests as
+`.bench-venv/bin/python -m pytest`, or `.bench-venv\\Scripts\\python -m pytest` on Windows).
+Work until the suite passes; there is no one to answer questions.
+"""
+test = """python {task_dir}/benchenv.py unchanged 451af60dec590a6010e2babdbf391ea8f815122f toolz/tests toolz/sandbox/tests && python {task_dir}/benchenv.py absent toolz/functoolz.py && python {task_dir}/benchenv.py modules toolz/functoolz 4 && python {task_dir}/benchenv.py run pytest -q --basetemp=.bench-tmp"""

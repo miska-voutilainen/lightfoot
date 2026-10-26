@@ -1,0 +1,16 @@
+{
+  "name": "lightfoot",
+  "description": "The lightfoot Claude Code plugin.",
+  "owner": {
+    "name": "Miska",
+    "url": "https://github.com/miska-voutilainen"
+  },
+  "plugins": [
+    {
+      "name": "lightfoot",
+      "source": "./plugin",
+      "description": "Companion for the lightfoot proxy: teaches Claude how to use condensed context, and adds /lightfoot:stats and /lightfoot:why.",
+      "category": "productivity"
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+name: Agent drift
+
+# Weekly: run the newest agents against a local mock API. No network calls to model
+# providers, no API cost, no keys.
+#
+# claude-code: compares Claude Code's request shapes with scripts/drift_baseline.json.
+#   After reviewing a change, accept it with `python scripts/drift_check.py --update`.
+# hooks: whether Gemini CLI's, Codex's or Cline's after-tool hook gained an output field
+#   (scripts/hook_watch.py); a new one may make hook mode possible for that agent.
+# agents: runs Codex CLI, opencode, Aider and Gemini CLI through Lightfoot end to end
+#   (scripts/agent_check.py). A failure means an agent release changed something
+#   Lightfoot should be checked against.
+
+on:
+  schedule:
+    - cron: "17 6 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  claude-code:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.13"
+      - uses: actions/setup-node@v7
+        with:
+          node-version: "22"
+      - run: npm install -g @anthropic-ai/claude-code
+      - run: python -m pip install -e .
+      - run: python scripts/drift_check.py
+
+  agents:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"  # Aider supports Python below 3.13
+      - uses: actions/setup-node@v7
+        with:
+          node-version: "22"
+      - run: npm install -g @openai/codex opencode-ai @google/gemini-cli
+      - run: pipx install aider-chat
+      - run: python -m pip install -e .
+      - run: codex --version && opencode --version && aider --version
+      - run: python scripts/agent_check.py codex opencode aider gemini
+
+  hooks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.13"
+      - run: python scripts/hook_watch.py

@@ -1,0 +1,40 @@
+name: Release
+
+# Publishes to PyPI when a version tag (v1.0.0, …) is pushed. Uses PyPI trusted
+# publishing: configure the "lightfoot" project on PyPI to trust this workflow and the
+# "pypi" environment first; no API token is stored in the repository.
+
+on:
+  push:
+    tags: ["v*"]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    environment: pypi
+    permissions:
+      id-token: write
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.13"
+      - run: python -m pip install build
+      - run: python -m build
+      - uses: pypa/gh-action-pypi-publish@release/v1
+
+  # The Homebrew formula and Scoop manifest are built from what PyPI now serves, so they
+  # run after publishing; the script waits for PyPI's JSON API to catch up.
+  manifests:
+    needs: publish
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.13"
+      - run: python scripts/release_manifests.py "${GITHUB_REF_NAME#v}" --out dist/manifests
+      - uses: actions/upload-artifact@v7
+        with:
+          name: manifests
+          path: dist/manifests/

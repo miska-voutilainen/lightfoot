@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 252" width="840" height="252" role="img" aria-labelledby="title"><title id="title">The request pipeline: adapter, planner, validator, fail-safe, ledger</title>
+<style>
+  text { font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif; fill: #1f2328; }
+  .mono { font-family: ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,monospace; }
+  .muted { fill: #59636e; }
+  .accent { fill: #0969da; }
+  .box { fill: none; stroke: #59636e; }
+  .box-accent { fill: none; stroke: #0969da; }
+  .frame { fill: none; stroke: #8c959f; stroke-dasharray: 4 3; }
+  .line { stroke: #59636e; fill: none; }
+  .line-accent { stroke: #0969da; fill: none; }
+  .faint { stroke: #d0d7de; fill: none; }
+  .head { fill: #59636e; }
+  .head-accent { fill: #0969da; }
+  @media (prefers-color-scheme: dark) {
+    text { fill: #e6edf3; }
+    .muted { fill: #9198a1; }
+    .accent { fill: #4493f8; }
+    .box { stroke: #9198a1; }
+    .box-accent { stroke: #4493f8; }
+    .frame { stroke: #656c76; }
+    .line { stroke: #9198a1; }
+    .line-accent { stroke: #4493f8; }
+    .faint { stroke: #3d444d; }
+    .head { fill: #9198a1; }
+    .head-accent { fill: #4493f8; }
+  }
+</style>
+<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="head" d="M0,0 L10,5 L0,10 z"/></marker><marker id="aa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="head-accent" d="M0,0 L10,5 L0,10 z"/></marker></defs><rect class="box" x="10" y="66" width="100" height="48" rx="2" stroke-width="1"/><text x="60.0" y="94.5" font-size="13" font-weight="600" text-anchor="middle">your agent</text><rect class="frame" x="140" y="24" width="560" height="142" rx="2" stroke-width="1"/><text x="152" y="42" font-size="11.5" font-weight="400" text-anchor="start" class="muted">Lightfoot daemon, 127.0.0.1:8787</text><rect class="box" x="156" y="66" width="116" height="48" rx="2" stroke-width="1"/><text x="214.0" y="87.0" font-size="13" font-weight="600" text-anchor="middle">adapter</text><text x="214.0" y="104.0" font-size="11.5" font-weight="400" text-anchor="middle" class="mono muted">adapters/</text><text x="214" y="136" font-size="11" font-weight="400" text-anchor="middle" class="muted">parse into a neutral view</text><rect class="box" x="292" y="66" width="116" height="48" rx="2" stroke-width="1"/><text x="350.0" y="87.0" font-size="13" font-weight="600" text-anchor="middle">planner</text><text x="350.0" y="104.0" font-size="11.5" font-weight="400" text-anchor="middle" class="mono muted">transform.py</text><text x="350" y="136" font-size="11" font-weight="400" text-anchor="middle" class="muted">replay stored, plan new</text><path class="line-accent" d="M272,90 L290,90" stroke-width="1.25" marker-end="url(#aa)"/><rect class="box" x="428" y="66" width="116" height="48" rx="2" stroke-width="1"/><text x="486.0" y="87.0" font-size="13" font-weight="600" text-anchor="middle">validator</text><text x="486.0" y="104.0" font-size="11.5" font-weight="400" text-anchor="middle" class="mono muted">validate.py</text><text x="486" y="136" font-size="11" font-weight="400" text-anchor="middle" class="muted">nothing else changed</text><path class="line-accent" d="M408,90 L426,90" stroke-width="1.25" marker-end="url(#aa)"/><rect class="box" x="564" y="66" width="116" height="48" rx="2" stroke-width="1"/><text x="622.0" y="87.0" font-size="13" font-weight="600" text-anchor="middle">fail-safe</text><text x="622.0" y="104.0" font-size="11.5" font-weight="400" text-anchor="middle" class="mono muted">server.py</text><text x="622" y="136" font-size="11" font-weight="400" text-anchor="middle" class="muted">fall back on a 400</text><path class="line-accent" d="M544,90 L562,90" stroke-width="1.25" marker-end="url(#aa)"/><path class="line-accent" d="M110,90 L154,90" stroke-width="1.25" marker-end="url(#aa)"/><path class="line-accent" d="M680,90 L728,90" stroke-width="1.25" marker-end="url(#aa)"/><rect class="box" x="730" y="66" width="100" height="48" rx="2" stroke-width="1"/><text x="780.0" y="94.5" font-size="13" font-weight="600" text-anchor="middle">model API</text><path class="line" d="M670,114 L670,196" stroke-width="1.25" stroke-dasharray="4 3" marker-end="url(#a)"/><rect class="box" x="612" y="198" width="116" height="44" rx="2" stroke-width="1"/><text x="670.0" y="217.0" font-size="13" font-weight="600" text-anchor="middle">ledger</text><text x="670.0" y="234.0" font-size="11.5" font-weight="400" text-anchor="middle" class="mono muted">store.py</text></svg>

@@ -1,0 +1,42 @@
+# Environments and caches
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.hypothesis/
+.coverage
+.coverage.*
+coverage.xml
+htmlcov/
+build/
+dist/
+
+# Secrets: never commit keys, tokens or local credentials
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.pfx
+.netrc
+.pypirc
+secrets.*
+credentials.*
+
+# Local lightfoot data (spill files, pruned history, captures)
+.lightfoot/
+*.log
+
+# Local editor and agent settings
+.vscode/
+.idea/
+.claude/settings.local.json
+.DS_Store
+Thumbs.db
+
+# Private working notes, not part of the project
+notes/

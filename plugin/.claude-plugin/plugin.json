@@ -1,0 +1,13 @@
+{
+  "name": "lightfoot",
+  "displayName": "lightfoot",
+  "version": "1.0.0",
+  "description": "Companion for the lightfoot proxy: teaches Claude how to use condensed context, and adds /lightfoot:stats and /lightfoot:why.",
+  "author": {
+    "name": "Miska"
+  },
+  "homepage": "https://github.com/miska-voutilainen/lightfoot",
+  "repository": "https://github.com/miska-voutilainen/lightfoot",
+  "license": "MIT",
+  "keywords": ["tokens", "cost", "context", "proxy"]
+}

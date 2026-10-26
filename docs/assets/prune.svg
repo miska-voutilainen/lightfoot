@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 870 252" width="870" height="252" role="img" aria-labelledby="title"><title id="title">Old-turn pruning: messages[1:boundary] become one summary turn; the full text goes to a history file</title>
+<style>
+  text { font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif; fill: #1f2328; }
+  .mono { font-family: ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,monospace; }
+  .muted { fill: #59636e; }
+  .accent { fill: #0969da; }
+  .box { fill: none; stroke: #59636e; }
+  .box-accent { fill: none; stroke: #0969da; }
+  .frame { fill: none; stroke: #8c959f; stroke-dasharray: 4 3; }
+  .line { stroke: #59636e; fill: none; }
+  .line-accent { stroke: #0969da; fill: none; }
+  .faint { stroke: #d0d7de; fill: none; }
+  .head { fill: #59636e; }
+  .head-accent { fill: #0969da; }
+  @media (prefers-color-scheme: dark) {
+    text { fill: #e6edf3; }
+    .muted { fill: #9198a1; }
+    .accent { fill: #4493f8; }
+    .box { stroke: #9198a1; }
+    .box-accent { stroke: #4493f8; }
+    .frame { stroke: #656c76; }
+    .line { stroke: #9198a1; }
+    .line-accent { stroke: #4493f8; }
+    .faint { stroke: #3d444d; }
+    .head { fill: #9198a1; }
+    .head-accent { fill: #4493f8; }
+  }
+</style>
+<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="head" d="M0,0 L10,5 L0,10 z"/></marker><marker id="aa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="head-accent" d="M0,0 L10,5 L0,10 z"/></marker></defs><text x="10" y="20" font-size="12" font-weight="400" text-anchor="start" class="muted">before</text><text x="500" y="20" font-size="12" font-weight="400" text-anchor="start" class="muted">after, at a new user prompt</text><rect class="box" x="10" y="30" width="360" height="34" rx="2" stroke-width="1"/><text x="22" y="52" font-size="12.5" font-weight="400" text-anchor="start" class="mono">messages[0]</text><text x="358" y="52" font-size="11.5" font-weight="400" text-anchor="end" class="muted">first message</text><rect class="box" x="10" y="70" width="360" height="110" rx="2" stroke-width="1"/><text x="22" y="92" font-size="12.5" font-weight="400" text-anchor="start" class="mono">messages[1:boundary]</text><text x="358" y="92" font-size="11.5" font-weight="400" text-anchor="end" class="muted">the oldest turns</text><rect class="box" x="10" y="186" width="360" height="56" rx="2" stroke-width="1"/><text x="22" y="208" font-size="12.5" font-weight="400" text-anchor="start" class="mono">messages[boundary:]</text><text x="358" y="208" font-size="11.5" font-weight="400" text-anchor="end" class="muted">at least 100k tokens, 3 prompts</text><path class="line-accent" d="M386,125 L484,125" stroke-width="1.25" marker-end="url(#aa)"/><rect class="box" x="500" y="30" width="360" height="34" rx="2" stroke-width="1"/><text x="512" y="52" font-size="12.5" font-weight="400" text-anchor="start" class="mono">messages[0]</text><text x="848" y="52" font-size="11.5" font-weight="400" text-anchor="end" class="muted">unchanged</text><rect class="box-accent" x="500" y="70" width="360" height="34" rx="2" stroke-width="1.5"/><text x="512" y="92" font-size="12.5" font-weight="400" text-anchor="start" class="accent">one assistant turn</text><text x="848" y="92" font-size="11.5" font-weight="400" text-anchor="end" class="muted">the summary</text><rect class="box" x="500" y="110" width="360" height="56" rx="2" stroke-width="1"/><text x="512" y="132" font-size="12.5" font-weight="400" text-anchor="start" class="mono">messages[boundary:]</text><text x="848" y="132" font-size="11.5" font-weight="400" text-anchor="end" class="muted">unchanged</text><path class="line" d="M370,160 L436,160 L436,212 L498,212" stroke-width="1.25" stroke-dasharray="4 3" marker-end="url(#a)"/><rect class="box" x="500" y="196" width="360" height="34" rx="2" stroke-width="1"/><text x="512" y="218" font-size="12.5" font-weight="400" text-anchor="start" class="mono">.lightfoot/history/</text><text x="848" y="218" font-size="11.5" font-weight="400" text-anchor="end" class="muted">full text</text></svg>

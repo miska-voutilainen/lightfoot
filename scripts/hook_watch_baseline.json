@@ -1,0 +1,24 @@
+{
+  "cline": [
+    "cancel",
+    "contextModification",
+    "errorMessage"
+  ],
+  "codex": [
+    "PostToolUseCommandOutputWire.decision",
+    "PostToolUseCommandOutputWire.hook_specific_output",
+    "PostToolUseCommandOutputWire.reason",
+    "PostToolUseCommandOutputWire.universal",
+    "PostToolUseHookSpecificOutputWire.additional_context",
+    "PostToolUseHookSpecificOutputWire.hook_event_name",
+    "PostToolUseHookSpecificOutputWire.updated_mcp_tool_output",
+    "updatedMCPToolOutput"
+  ],
+  "gemini-cli": [
+    "continue",
+    "decision",
+    "hookSpecificOutput.additionalContext",
+    "hookSpecificOutput.tailToolCallRequest",
+    "reason"
+  ]
+}

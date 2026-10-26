@@ -1,0 +1,45 @@
+# Paired eval task file: lightfoot eval run tasks.toml
+#
+# Each task runs `runs` times per arm (baseline = passthrough, proxy = live) in a fresh
+# git worktree at `commit`, headless, then `test` decides pass or fail. Both arms go
+# through the proxy, so they are measured the same way.
+
+agent = "claude"          # default agent for tasks: "claude" or "codex" (experimental)
+
+# Claude Code: headless runs cannot answer permission prompts. "acceptEdits" allows
+# file edits only; "bypassPermissions" allows everything inside the throwaway worktree.
+permission_mode = "acceptEdits"
+model = "opus"            # same model for both arms; omit to use your default
+runs = 3
+timeout_minutes = 30
+
+[[task]]
+id = "fix-date-parsing"
+repo = "/path/to/your/repo"
+commit = "a1b2c3d"        # optional, defaults to HEAD
+prompt = """
+The test tests/test_dates.py::test_iso_week fails. Find the cause in the date utilities and fix it.
+Do not change the test.
+"""
+test = "python -m pytest -q tests/test_dates.py"
+
+[[task]]
+id = "long-refactor"
+repo = "/path/to/your/repo"
+prompt = """
+Split src/app/services.py into one module per service, update every import, and keep the
+whole test suite passing.
+"""
+test = "python -m pytest -q"
+timeout_minutes = 60
+
+# Codex CLI (experimental; needs OPENAI_API_KEY). codex_args are passed to `codex exec`;
+# headless runs cannot answer approvals, so allow edits in the worktree explicitly.
+# [[task]]
+# id = "fix-date-parsing-codex"
+# agent = "codex"
+# model = "gpt-6-sol"
+# codex_args = ["--full-auto"]
+# repo = "/path/to/your/repo"
+# prompt = "The test tests/test_dates.py::test_iso_week fails. Fix the date utilities."
+# test = "python -m pytest -q tests/test_dates.py"
