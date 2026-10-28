@@ -2,6 +2,12 @@
 
 Notable changes to Lightfoot. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and versions follow [Semantic Versioning](https://semver.org/).
 
+## [Unreleased]
+
+### Fixed
+
+- On Windows, starting an agent through Lightfoot opened a `python.exe` console window that stayed open, and closing it stopped the proxy. The proxy (and the Obsidian handoff workers) now start with a hidden console. A venv's or uv's `python.exe` is a launcher, and the flag used before left its child Python to open a console of its own.
+
 ## [1.0.0] - 2026-10-26
 
 First public release.

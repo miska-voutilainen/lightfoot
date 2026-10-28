@@ -177,7 +177,9 @@ def start(session_id: str, pending: Pending, min_turns: int) -> bool:
     log.write_text(json.dumps({"log": log_text, "touched": touched}), encoding="utf-8")
     kwargs: dict = {}
     if os.name == "nt":
-        kwargs["creationflags"] = subprocess.DETACHED_PROCESS | subprocess.CREATE_NEW_PROCESS_GROUP
+        # A hidden console, not none: a venv's python.exe is a launcher, and a console program started
+        # without one gets a new, visible console window. CREATE_NO_WINDOW keeps it hidden for both.
+        kwargs["creationflags"] = subprocess.CREATE_NO_WINDOW | subprocess.CREATE_NEW_PROCESS_GROUP
     else:
         kwargs["start_new_session"] = True
     env = os.environ.copy()
