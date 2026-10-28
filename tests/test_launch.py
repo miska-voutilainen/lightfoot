@@ -7,6 +7,25 @@ import pytest
 from lightfoot import launch
 
 
+@pytest.mark.skipif(os.name != "nt", reason="Windows console flags")
+def test_the_proxy_starts_with_a_hidden_console(monkeypatch, lightfoot_home):
+    # DETACHED_PROCESS gave a venv's python.exe launcher a child with a new, visible console window.
+    started = {}
+    monkeypatch.setattr(launch, "running", lambda port: None)
+    monkeypatch.setattr(launch, "health", lambda port, timeout=0.5: {"version": "x"})
+    monkeypatch.setattr(launch.subprocess, "Popen", lambda argv, **kwargs: started.update(kwargs))
+    launch.start_daemon(8787)
+    assert started["creationflags"] & subprocess.CREATE_NO_WINDOW
+    assert not started["creationflags"] & subprocess.DETACHED_PROCESS
+
+
+def test_no_background_start_detaches_from_the_console():
+    from pathlib import Path
+
+    sources = Path(launch.__file__).parent.rglob("*.py")
+    assert [p.name for p in sources if "DETACHED_PROCESS" in p.read_text(encoding="utf-8")] == []
+
+
 def test_watchdog_restarts_a_dead_proxy(monkeypatch):
     calls = {"health": 0, "start": 0}
 

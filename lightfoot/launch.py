@@ -76,7 +76,9 @@ def start_daemon(port: int, wait: float = 10.0) -> dict:
         pass
     kwargs: dict = {}
     if os.name == "nt":
-        kwargs["creationflags"] = subprocess.DETACHED_PROCESS | subprocess.CREATE_NEW_PROCESS_GROUP
+        # A hidden console, not none: a venv's python.exe is a launcher, and a console program started
+        # without one gets a new, visible console window. CREATE_NO_WINDOW keeps it hidden for both.
+        kwargs["creationflags"] = subprocess.CREATE_NO_WINDOW | subprocess.CREATE_NEW_PROCESS_GROUP
     else:
         kwargs["start_new_session"] = True
     with open(stderr_path, "ab") as stderr:  # the child keeps its own handle
