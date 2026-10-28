@@ -1,7 +1,7 @@
 {
   "name": "lightfoot",
   "displayName": "lightfoot",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Companion for the lightfoot proxy: teaches Claude how to use condensed context, and adds /lightfoot:stats and /lightfoot:why.",
   "author": {
     "name": "Miska"
